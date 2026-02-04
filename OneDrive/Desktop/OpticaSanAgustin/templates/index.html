@@ -1,0 +1,126 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ópticas San Agustín | Calidad Visual</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+</head>
+<body>
+
+    <header class="wp-navbar d-flex justify-content-between align-items-center">
+        
+        <nav class="d-none d-md-flex">
+            <a href="#" class="nav-link-wp">Monturas</a>
+            <a href="#" class="nav-link-wp">Lentes de Sol</a>
+            <a href="#" class="nav-link-wp">Niños</a>
+        </nav>
+
+        <button class="btn d-md-none"><span class="material-icons">menu</span></button>
+
+        <div class="text-center">
+            <a href="{% url 'index' %}" class="brand-wp">San Agustín</a>
+        </div>
+
+        <div class="d-flex align-items-center">
+            
+            <a href="#" class="utility-link d-none d-lg-block">
+                <span class="material-icons utility-icon">location_on</span> Sedes
+            </a>
+
+            {% if user.is_authenticated %}
+                <div class="dropdown d-inline-block ms-3">
+                    <a href="#" class="utility-link" data-bs-toggle="dropdown">
+                        <span class="material-icons utility-icon">person</span> {{ user.username }}
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end border-0 shadow mt-3">
+                        <li><a class="dropdown-item" href="#">Mis Citas</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <form action="{% url 'logout' %}" method="post">
+                                {% csrf_token %}
+                                <button type="submit" class="dropdown-item text-danger">Salir</button>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            {% else %}
+                <a href="{% url 'login' %}" class="utility-link">
+                    <span class="material-icons utility-icon">account_circle</span> Ingresar
+                </a>
+            {% endif %}
+
+            <a href="#" class="utility-link ms-3">
+                <span class="material-icons utility-icon">shopping_bag</span> (0)
+            </a>
+            
+            <a href="#" class="btn btn-dark btn-sm ms-4 rounded-pill px-3 d-none d-lg-inline-block">Agendar Examen</a>
+        </div>
+    </header>
+
+
+    <section class="hero-container">
+        <img src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" class="hero-img" alt="Mujer con lentes">
+        
+        <div class="hero-overlay">
+            <div class="hero-content animate-up">
+                <h1 class="hero-title">Tu visión merece lo mejor.</h1>
+                <p class="lead mb-4 text-muted">Descubre la nueva colección 2026 con tecnología Blue Light y diseños de acetato italiano.</p>
+                <div class="d-flex gap-3">
+                    <a href="#" class="btn btn-premium">Ver Colección</a>
+                    <a href="#" class="btn btn-outline-dark px-4 py-2" style="border-width: 2px; font-weight: 700;">Hacer el Test</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="section-pilares">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold" style="color: var(--primary-dark);">Su camino empieza aquí</h2>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card-pilar">
+                        <p class="pilar-subtitle">AYÚDAME A ELEGIR</p>
+                        <h3 class="pilar-title">Pon a prueba tu visión</h3>
+                        <span class="material-icons text-primary fs-1 mb-3">visibility</span>
+                        <div class="mt-3">
+                            <a href="#" class="btn btn-outline-primary rounded-pill px-4">Iniciar Test</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card-pilar">
+                        <p class="pilar-subtitle">EXPLORAR</p>
+                        <h3 class="pilar-title">Nuestras Monturas</h3>
+                        <span class="material-icons text-primary fs-1 mb-3">face</span>
+                        <div class="mt-3">
+                            <a href="#" class="btn btn-premium rounded-pill px-4">Ver Catálogo</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card-pilar">
+                        <p class="pilar-subtitle">ATENCIÓN PERSONALIZADA</p>
+                        <h3 class="pilar-title">Encuentra tu óptica</h3>
+                        <span class="material-icons text-primary fs-1 mb-3">storefront</span>
+                        <div class="mt-3">
+                            <a href="#" class="btn btn-outline-primary rounded-pill px-4">Reservar Cita</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

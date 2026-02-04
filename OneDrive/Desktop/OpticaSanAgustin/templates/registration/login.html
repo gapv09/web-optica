@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Conectarme a mi cuenta | San Agustín</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+    <style>
+        /* Estilos específicos copiados de tu imagen de referencia */
+        .login-title {
+            color: #1e429f; /* Azul oscuro */
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        .btn-rosa {
+            background-color: #e91e63; /* Color rosado/rojo de la imagen */
+            color: white;
+            font-weight: 600;
+            border: none;
+            padding: 12px;
+            transition: 0.3s;
+        }
+        .btn-rosa:hover { background-color: #c2185b; color: white; }
+        .form-control { padding: 12px; background-color: #fff; border: 1px solid #ddd; }
+        .link-rosa { color: #e91e63; text-decoration: none; font-weight: 500; }
+        .link-rosa:hover { text-decoration: underline; }
+    </style>
+</head>
+<body class="bg-light">
+
+    <nav class="navbar bg-white shadow-sm mb-5">
+        <div class="container justify-content-center">
+            <a class="navbar-brand fw-bold text-primary" href="{% url 'index' %}">San Agustín</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-5">
+                
+                <div class="text-center mb-4">
+                    <h2 class="login-title">Conectarme a mi cuenta</h2>
+                    <p class="text-muted">Ingresar tu e-mail y contraseña:</p>
+                </div>
+
+                <div class="card border-0 shadow-sm p-4 bg-white">
+                    <form method="post">
+                        {% csrf_token %}
+                        
+                        {% if form.errors %}
+                            <div class="alert alert-danger small">Usuario o contraseña incorrectos.</div>
+                        {% endif %}
+
+                        <div class="mb-3">
+                            <label class="form-label text-muted">Usuario / Email</label>
+                            <input type="text" name="username" class="form-control" required autofocus>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label text-muted">Contraseña</label>
+                            <input type="password" name="password" class="form-control" required>
+                        </div>
+
+                        <button type="submit" class="btn btn-rosa w-100 mb-3">Entrar</button>
+                    </form>
+
+                    <div class="text-center mt-3 text-muted small">
+                        Este sitio está protegido por hCaptcha y se aplican la Política de privacidad.
+                    </div>
+                </div>
+
+                <div class="text-center mt-4">
+                    <p class="text-muted mb-1">¿Nuevo cliente? <a href="{% url 'registro' %}" class="link-rosa">Crear cuenta</a></p>
+                    <p class="text-muted">¿Contraseña olvidada? <a href="#" class="link-rosa">Recuperar contraseña</a></p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
